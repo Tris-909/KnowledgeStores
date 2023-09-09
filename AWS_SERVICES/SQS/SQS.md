@@ -77,3 +77,9 @@ https://www.youtube.com/watch?v=cl_5dGGeTmY
 
 - Default : 300 calls per second per api, 3000 with batching
 - High Throughput Mode : Region dependent, 6000 calls per second per api, 60000 with batching BUT requires messages groups
+
+<h2>3.Lambda and SQS ?</h2>
+
+- To prevent errors happening at scale, **Lambda throttle functions scaling when invocation errors occur**. When the errors are resolved, Lambda continues to scale the function.
+
+-
