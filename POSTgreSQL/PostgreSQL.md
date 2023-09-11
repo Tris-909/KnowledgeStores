@@ -179,3 +179,77 @@ SELECT DATE(payment_date) payment_date, SUM(amount) amount FROM payment GROUP BY
 # Grouping by customer_id and only get the result that total of amount is more than 200 for one customer
 SELECT customer_id, SUM(amount) FROM payment GROUP BY customer_id HAVING SUM(amount) > 200;
 ```
+
+<h2>X/ Modifying Data : INSERT, UPDATE, DELETE</h2>
+
+## INSERT
+
+```
+    INSERT INTO
+        table_name(column1, column2, ...)
+    VALUES
+        (value1, value2, ...),
+        (value1, value2, ...),
+        (value1, value2, ...)
+    RETURNING *;
+```
+
+## UPDATE
+
+```
+    UPDATE
+        table_name
+    SET
+        column_name=value
+    WHERE
+        condition;
+    RETURNING *;
+```
+
+## DELETE
+
+```
+    DELETE FROM table_name
+    WHERE condition
+    RETURNING *;
+```
+
+<h2>XI/ DataTypes</h2>
+
+```
+# Boolean
+1, yes, y, t, true -> true
+0, no, false, f -> false
+
+# Character
+CHAR(n) limits the length of string that you add. If you add rows that have length more than this CHAR, POSTgreSQL will throw error. **POSTgreSQL** will add white space automatically for any character that is shorter than the limit
+VARCHAR(n) same as above but won't add whitespace
+TEXT string with unlimited length
+
+# Numeric
+SMALLINT ( -32,768 to 32,767 )
+INT ( -2,147,483,648 to 2,147,483,647 )
+float(n) floating-point number
+
+# Temporal data types
+DATE -> stores dates only
+TIME -> stores time of day values
+TIMESTAMP -> stores both date and time values
+TIMESTAMPZ -> same as above but also considering timezone
+INTERVAL -> store periods of time
+
+# Array
+integer[]
+character[]
+
+# JSON
+# UUID
+```
+
+<h2>XII/  & Foreign Key</h2>
+
+| Primary Key                           | Foreign Key                                |
+| ------------------------------------- | ------------------------------------------ |
+| Identify a row is unique in a table   | Reference the primary key of another table |
+| Key constraints: non-null, unique     |                                            |
+| A table can only have ONE primary key | A table can have multiple foreign keys     |
