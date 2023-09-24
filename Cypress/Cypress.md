@@ -1,8 +1,11 @@
-- https://learn.cypress.io/testing-your-first-application/how-to-test-multiple-pages
-- https://learn.cypress.io/testing-foundations/testing-is-a-mindset
-- https://learn.cypress.io/cypress-fundamentals/how-to-write-a-test
+# CYPRESS
 
-# Cypress Basics
+- <https://learn.cypress.io/testing-your-first-application/how-to-test-multiple-pages>
+- <https://learn.cypress.io/testing-foundations/testing-is-a-mindset>
+- <https://learn.cypress.io/cypress-fundamentals/how-to-write-a-test>
+- <https://docs.cypress.io/api/table-of-contents>
+
+## Cypress Basics
 
 `${variable}` : to replace with any values
 
@@ -52,7 +55,49 @@ To access path URL you can use `cy.location("pathname")`
 
 To check if the content is equal to something or not we can use `cy.get().should("equal", ${some_value})`
 
-# The Testing Mindset
+Testing pattern : Arrange / Act / Assert
+
+Cypress is running in the browser and has access to anything browser has access to
+
+Cypress `then` and `wrap` methods :
+
+```jsx
+cy.get("button").then(($btn) => {
+  const cls = $btn.attr("class");
+
+  cy.wrap($btn).click().should("not.have.class", cls);
+});
+```
+
+Cypress Alias `as(${name})`
+
+```jsx
+// Reduce code replication
+cy.get("table").find("tr").as("rows");
+
+// Access the cy.get() above easily
+cy.get("@rows");
+```
+
+You can make Cypress wait for certain action by using both `alias` and `wait`
+
+```jsx
+cy.request("POST", "/users").as("signup");
+
+cy.wait("@signup");
+```
+
+Cypress `its()` helps you to get a property’s value on previous yielded subject.
+
+```jsx
+cy.wrap(["Wai Yan", "Yu"]).its(1).should("eq", "Yu"); // true
+cy.wrap({ age: 52 }).its("age").should("eq", 52); // true
+cy.wait("@publicTransactions")
+  .its("response.body.results")
+  .invoke("slice", 0, 5);
+```
+
+## The Testing Mindset
 
 - Testing is the most important aspect of software development.
 - If you want to write good tests, think about ways to break your application and bulletproof it.
