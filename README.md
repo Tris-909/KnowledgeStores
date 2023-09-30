@@ -7,3 +7,4 @@
 - [AWS POSTgreSQL](/POSTgreSQL/PostgreSQL.md)
 - [Cypress](/E2E%20Tests/Cypress/)
 - [Playwright](/E2E%20Tests/PlayWright/)
+- [Coding Principles](/Principles/Principles.md)
